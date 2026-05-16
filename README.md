@@ -1,4 +1,5 @@
 SecurePanel - Incident Management Portal
+
 A hardened Flask web application for managing cybersecurity incidents, built with security at the design phase.
 Developed for Secure Application Development at the University of Greater Manchester / New York College Thessaloniki.
 
