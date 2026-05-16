@@ -58,7 +58,7 @@ A Hardened Web Application for Cybersecurity Incident Management with STRIDE-Bas
 ## Setup
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/SecurePanel.git
+git clone https://github.com/theodora-74/Secure-App.git
 cd SecurePanel
 pip3 install -r requirements.txt --break-system-packages
 python3 app.py
@@ -98,6 +98,6 @@ secure-app/
 
 ## Author
 
-[YOUR NAME] — BSc Computing, University of Bolton (2026)
+Theodora Filaj — BSc Computing, University of Greater Manchester (2026)
 
-DEV6003 Secure Application Development — New York College Thessaloniki
+Secure Application Development — New York College Thessaloniki
