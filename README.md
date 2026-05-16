@@ -59,7 +59,7 @@ A Hardened Web Application for Cybersecurity Incident Management with STRIDE-Bas
 
 ```bash
 git clone https://github.com/theodora-74/Secure-App.git
-cd SecurePanel
+cd secure-app
 pip3 install -r requirements.txt --break-system-packages
 python3 app.py
 ```
