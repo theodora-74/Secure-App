@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Incident #{{ incident['id'] }}{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 800px;">
+    <div class="page-header">
+        <h1>{{ incident['title'] }}</h1>
+        <p>Incident #{{ incident['id'] }}</p>
+    </div>
+
+    <div class="card">
+        <div class="incident-meta">
+            <div class="meta-item">
+                <span class="meta-label">Severity</span>
+                <span class="meta-value"><span class="badge badge-{{ incident['severity'] }}">{{ incident['severity'] }}</span></span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Category</span>
+                <span class="meta-value">{{ incident['category']|replace('_', ' ')|title }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Status</span>
+                <span class="meta-value"><span class="badge badge-{{ incident['status'] }}">{{ incident['status'] }}</span></span>
+            </div>
+            {% if incident['username'] is defined %}
+            <div class="meta-item">
+                <span class="meta-label">Reported By</span>
+                <span class="meta-value">{{ incident['username'] }}</span>
+            </div>
+            {% endif %}
+            <div class="meta-item">
+                <span class="meta-label">Submitted</span>
+                <span class="meta-value">{{ incident['created_at'] }}</span>
+            </div>
+            <div class="meta-item">
+                <span class="meta-label">Last Updated</span>
+                <span class="meta-value">{{ incident['updated_at'] }}</span>
+            </div>
+        </div>
+
+        <div class="description-block">{{ incident['description'] }}</div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+        {% if current_role == 'admin' %}
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline">Back to Admin Panel</a>
+        {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Back to Dashboard</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

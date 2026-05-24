@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1>My Incidents</h1>
+        <p>View and manage your submitted cybersecurity incident reports.</p>
+    </div>
+
+    <div style="margin-bottom: 1.5rem;">
+        <a href="{{ url_for('new_incident') }}" class="btn btn-primary">Report New Incident</a>
+    </div>
+
+    {% if incidents %}
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Severity</th>
+                    <th>Category</th>
+                    <th>Status</th>
+                    <th>Submitted</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for inc in incidents %}
+                <tr>
+                    <td>#{{ inc['id'] }}</td>
+                    <td style="color: var(--text-primary); font-weight: 500;">{{ inc['title'] }}</td>
+                    <td><span class="badge badge-{{ inc['severity'] }}">{{ inc['severity'] }}</span></td>
+                    <td>{{ inc['category']|replace('_', ' ')|title }}</td>
+                    <td><span class="badge badge-{{ inc['status'] }}">{{ inc['status'] }}</span></td>
+                    <td>{{ inc['created_at'][:16] }}</td>
+                    <td><a href="{{ url_for('view_incident', incident_id=inc['id']) }}" class="btn btn-outline btn-small">View</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="card" style="text-align: center; padding: 3rem;">
+        <p style="color: var(--text-muted); margin-bottom: 1rem;">No incidents reported yet.</p>
+        <a href="{{ url_for('new_incident') }}" class="btn btn-outline">Submit Your First Report</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

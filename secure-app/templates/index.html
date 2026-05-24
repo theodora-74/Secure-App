@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- Hero -->
+<section class="hero">
+    <h1>Secure Incident<br><span class="gradient-text">Management Portal</span></h1>
+    <p>A hardened platform for reporting, tracking, and managing cybersecurity incidents. Built with security at the core from day one.</p>
+    <div class="hero-actions">
+        {% if current_user %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Go to Dashboard</a>
+        {% else %}
+            <a href="{{ url_for('register') }}" class="btn btn-primary">Get Started</a>
+            <a href="{{ url_for('login') }}" class="btn btn-outline">Log In</a>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Features -->
+<div class="container">
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Defence in Depth</h3>
+            <p>Multiple layers of security including bcrypt hashing, CSRF protection, input sanitisation, and hardened HTTP headers.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3>Role-Based Access</h3>
+            <p>Strict RBAC enforcement separating client and admin privileges. Unauthorised access attempts are logged.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <h3>Incident Tracking</h3>
+            <p>Report, categorise, and track cybersecurity incidents through their full lifecycle from submission to resolution.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <h3>Audit Logging</h3>
+            <p>Every login, registration, incident creation, and administrative action is recorded in a comprehensive audit log.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+            </div>
+            <h3>Password Policy</h3>
+            <p>Enforced complexity requirements with uppercase, lowercase, digits, and special characters. Hashed with bcrypt.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">
+                <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Rate Limiting</h3>
+            <p>Authentication endpoints are rate-limited to prevent brute-force attacks and credential stuffing.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

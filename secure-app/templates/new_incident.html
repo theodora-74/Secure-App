@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Report Incident{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 680px;">
+    <div class="page-header">
+        <h1>Report a Security Incident</h1>
+        <p>Provide as much detail as possible to help our team investigate.</p>
+    </div>
+
+    <div class="card">
+        <form method="POST" action="{{ url_for('new_incident') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+                <label for="title">Incident Title</label>
+                <input type="text" id="title" name="title" class="form-control"
+                       placeholder="Brief description of the incident" required minlength="5" maxlength="200">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="severity">Severity Level</label>
+                    <select id="severity" name="severity" class="form-control" required>
+                        <option value="" disabled selected>Select severity</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="critical">Critical</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" class="form-control" required>
+                        <option value="" disabled selected>Select category</option>
+                        <option value="malware">Malware</option>
+                        <option value="phishing">Phishing</option>
+                        <option value="data_breach">Data Breach</option>
+                        <option value="unauthorized_access">Unauthorized Access</option>
+                        <option value="dos">Denial of Service</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Detailed Description</label>
+                <textarea id="description" name="description" class="form-control"
+                          placeholder="Describe what happened, when it occurred, affected systems, and any steps already taken."
+                          required minlength="20" maxlength="5000" rows="6"></textarea>
+            </div>
+
+            <div style="display: flex; gap: 0.75rem; margin-top: 0.5rem;">
+                <button type="submit" class="btn btn-primary">Submit Incident</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
